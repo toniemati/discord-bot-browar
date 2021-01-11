@@ -1,13 +1,15 @@
 import dotenv from 'dotenv';
-import { Client, MessageEmbed } from 'discord.js';
+import { Client } from 'discord.js';
 import Joke from './Joke.js';
 import Bot from './Bot.js';
+import Biba from './Biba.js';
 
 dotenv.config();
 
 const CLIENT = new Client();
 const BOT = new Bot();
 const JOKE = new Joke();
+const BIBA = new Biba();
 
 class Main {
 
@@ -28,6 +30,7 @@ class Main {
 
       JOKE.checkJoke(message);
       BOT.checkBot(message);
+      BIBA.checkBiba(message);
     });
 
   }
