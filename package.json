@@ -1,0 +1,32 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "firebase": "^8.2.2",
+    "json-loader": "^0.5.7",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/Main.js",
+    "dev": "nodemon ./src/Main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toniemati/discord-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toniemati/discord-bot/issues"
+  },
+  "homepage": "https://github.com/toniemati/discord-bot#readme"
+}
