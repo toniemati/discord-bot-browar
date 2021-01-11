@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { Client } from 'discord.js';
+import { Client, MessageEmbed } from 'discord.js';
 import Joke from './Joke.js';
 import Bot from './Bot.js';
 

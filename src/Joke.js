@@ -1,3 +1,4 @@
+import { MessageEmbed } from 'discord.js';
 import { database } from './firebase.js';
 
 class Joke {
@@ -34,14 +35,21 @@ class Joke {
   }
 
   all(message) {
-    console.log(this.jokes);
 
-    message.channel.send('Writing all jokes...');
+    const embed = new MessageEmbed()
+      .setTitle('Najlepsze teksty Pawła')
+      .setColor('RANDOM');
+
+    for (let prop in this.jokes) {
+      const msg = this.jokes[prop].content
+      embed.addField(`${prop}:`, msg);
+    }
+
+    message.channel.send(embed);
   }
 
   random(message) {
     const jokesLength = Object.keys(this.jokes).length;
-
     const randomIndex = Math.floor(Math.random() * (jokesLength - 0)) + 0;
     const ids = [];
 
@@ -50,9 +58,26 @@ class Joke {
     }
 
     const joke = ids[randomIndex];
-    const { content } = joke;
 
-    message.channel.send(content);
+    let date = new Date(joke.created);
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hours = date.getHours();
+    let min = date.getMinutes();
+    let sec = date.getSeconds();
+
+    if (month < 10) month = `0${month}`;
+
+    date = `${year}-${month}-${day} ${hours}:${min}:${sec}`;
+
+    const embed = new MessageEmbed()
+      .setAuthor(joke.author)
+      .setTitle(joke.content)
+      .setFooter(date)
+      .setColor('RANDOM');
+
+    message.channel.send(embed);
   }
 
   add(message) {
@@ -89,7 +114,7 @@ class Joke {
 
     this.getJokes();
 
-    message.send('Usunięto tekscik');
+    message.channel.send('Usunięto tekscik');
   }
 }
 

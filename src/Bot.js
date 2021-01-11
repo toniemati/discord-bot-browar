@@ -1,3 +1,13 @@
+import { MessageEmbed } from "discord.js";
+
+const COMMANDS = [
+  { command: '!bot cmd', description: 'Wszystkie dostępny komendy' },
+  { command: '!pawel', description: 'Pokazuje losowy tekst' },
+  { command: '!pawel all', description: 'Pokazuje wszystkie teksty' },
+  { command: '!pawel add <text>', description: 'Dodaje <text> do listy tekstów' },
+  { command: '!pawel remove <id>', description: 'Usuwa <id> z listy tekstów' }
+];
+
 class Bot {
 
   checkBot(message) {
@@ -6,7 +16,7 @@ class Bot {
     const command = text[1];
     const word = text[2];
 
-    //* Exit if no pawel command
+    //* Exit if no bot command
     if (text[0] !== '!bot') return;
 
     //* Exit if no command
@@ -17,7 +27,15 @@ class Bot {
   }
 
   showAllCommands(message) {
-    message.channel.send('Showing all commands...');
+    const embed = new MessageEmbed()
+      .setTitle('Lista wszystkich komend')
+      .setColor('RANDOM');
+
+    COMMANDS.forEach(cmd => {
+      embed.addField(cmd.command, cmd.description);
+    });
+
+    message.channel.send(embed);
   }
 }
 
